@@ -1,6 +1,6 @@
 'use strict';
 module.exports = {
-  up: (queryInterface, Sequelize)=> {
+  up: function(queryInterface, Sequelize) {
     return queryInterface.createTable('Books', {
       id: {
         allowNull: false,
@@ -11,13 +11,13 @@ module.exports = {
       name: {
         type: Sequelize.STRING
       },
+      category: {
+        type: Sequelize.STRING
+      },
       author: {
         type: Sequelize.STRING
       },
       content: {
-        type: Sequelize.STRING
-      },
-      category: {
         type: Sequelize.STRING
       },
       isclicense: {
@@ -33,7 +33,7 @@ module.exports = {
       }
     });
   },
-  down: (queryInterface, Sequelize)=> {
+  down: function(queryInterface, Sequelize) {
     return queryInterface.dropTable('Books');
   }
 };
