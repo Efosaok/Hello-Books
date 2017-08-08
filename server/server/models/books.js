@@ -1,19 +1,38 @@
 'use strict';
-module.exports = function(sequelize, DataTypes) {
-  var Books = sequelize.define('Books', {
-    name: DataTypes.STRING,
-    author: DataTypes.STRING,
-    content: DataTypes.STRING,
-    category: DataTypes.STRING,
-    isclicense: DataTypes.STRING,
-    title:DataTypes.STRING,
-    Description:DataTypes.STRING
+export default (sequelize, DataTypes)=> {
+  const Books = sequelize.define('Books', {
+    name: {
+      type: DataTypes.STRING,
+      allowNull: false
+    },
+    category: {
+      type: DataTypes.STRING,
+      allowNull: false
+    },
+    isclicense: {
+      type: DataTypes.STRING,
+      allowNull: false
+    },
+    contents: {
+      type: DataTypes.STRING,
+      allowNull: false
+    },
+    author: {
+      type: DataTypes.STRING,
+      allowNull: false
+    },
+    quantity: {
+      type: DataTypes.INTEGER,
+      allowNull: false
+    }
   }, {
     classMethods: {
-      associate: function(models) {
+      associate: (models)=> {
         // associations can be defined here
       }
     }
   });
   return Books;
 };
+
+

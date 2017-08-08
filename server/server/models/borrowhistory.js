@@ -1,16 +1,24 @@
 'use strict';
-module.exports = function(sequelize, DataTypes) {
-  var borrowhistory = sequelize.define('borrowhistory', {
-    userid: DataTypes.INTEGER,
-    bookid: DataTypes.INTEGER,
-    action: DataTypes.STRING,
-    date: DataTypes.STRING
+export default (sequelize, DataTypes)=> {
+  const Borrowhistory = sequelize.define('Borrowhistory', {
+    userid: {
+      type: DataTypes.INTEGER,
+      allowNull: false
+    },
+    bookid: {
+      type: DataTypes.INTEGER,
+      allowNull: false
+    },
+    returned: {
+      type: DataTypes.BOOLEAN,
+      allowNull: false
+    }
   }, {
     classMethods: {
-      associate: function(models) {
+      associate: (models)=> {
         // associations can be defined here
       }
     }
   });
-  return borrowhistory;
+  return Borrowhistory;
 };
