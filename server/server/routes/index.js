@@ -1,14 +1,20 @@
-const usersController = require('../controllers/users');
-const bookController = require('../controllers/books')
+import usersController from '../controllers/users'
+import bookController from '../controllers/books'
 
-module.exports = (app) => {
+export default (app) => {
   app.get('/api', (req, res) => res.status(200).send({
     message: 'Welcome to the Todos API!',
   }));
 
+  app.get('/api/users', usersController.allUsers);
   app.post('/api/users/signup', usersController.create);
   app.post("/api/users/signin", usersController.signin);
   app.post('/api/books', bookController.addBook);
   app.get('/api/books', bookController.getAvailableBooks);
-  app.put('/api/books/:bookid' ,bookController.modifyBook);
+  app.put('/api/books/:bookid', bookController.modifyBook);
+  app.post('/api/users/:userid/books', usersController.borrowBook);
+  app.put('/api/users/:userid/books', usersController.returnBook);
+  app.get('/api/users/:userid/books', usersController.getHistory);
+  app.get('/api/history', usersController.allHistory);
+  app.get('/api/users/:userid/books?returned=false', usersController.unreturnedBooks);
 };

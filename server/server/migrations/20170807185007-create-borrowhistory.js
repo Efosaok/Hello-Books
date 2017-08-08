@@ -1,7 +1,7 @@
 'use strict';
-module.exports = {
+export default = {
   up: (queryInterface, Sequelize)=> {
-    return queryInterface.createTable('borrowhistories', {
+    return queryInterface.createTable('Borrowhistories', {
       id: {
         allowNull: false,
         autoIncrement: true,
@@ -9,16 +9,17 @@ module.exports = {
         type: Sequelize.INTEGER
       },
       userid: {
-        type: Sequelize.INTEGER
+        type: Sequelize.INTEGER,
+        allowNull: false
       },
       bookid: {
-        type: Sequelize.INTEGER
+        type: Sequelize.INTEGER,
+        allowNull: false
       },
-      action: {
-        type: Sequelize.STRING
-      },
-      date: {
-        type: Sequelize.STRING
+      returned: {
+        type: Sequelize.BOOLEAN,
+        allowNull: false,
+        defaultValue: false
       },
       createdAt: {
         allowNull: false,
@@ -31,6 +32,6 @@ module.exports = {
     });
   },
   down: (queryInterface, Sequelize)=> {
-    return queryInterface.dropTable('borrowhistories');
+    return queryInterface.dropTable('Borrowhistories');
   }
 };
