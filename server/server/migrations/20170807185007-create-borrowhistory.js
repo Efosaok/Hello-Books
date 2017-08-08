@@ -1,5 +1,5 @@
 'use strict';
-export default = {
+export default  {
   up: (queryInterface, Sequelize)=> {
     return queryInterface.createTable('Borrowhistories', {
       id: {
