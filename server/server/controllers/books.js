@@ -1,10 +1,10 @@
 import Books from "../models"
-Books.Books;
+const AllBooks = Books.Books;
 
 export default  {
 //admin adding books to database controller
 	addBook(req,res) {
-		return Books
+		return AllBooks
 		.create({
 			name : req.body.name,
 			category : req.body.category,
@@ -19,7 +19,7 @@ export default  {
 	},
 //controller to get all available books 
 	getAvailableBooks(req,res) {
-		return Books
+		return AllBooks
 		.findAll()
 		.then(books => res.status(200).send(books))
 	},
@@ -29,7 +29,7 @@ export default  {
 	 		name: req.body.name,
 	 		category: req.body.category
 	 	}
-	 	return Books
+	 	return AllBooks
 	 	.update(newData, {where: {id: req.params.bookid}})
 	 	.then(Books => res.status(200).send(Books))
 	 	.catch(error => res.status(400).send(error.message))
