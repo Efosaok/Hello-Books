@@ -1,34 +1,37 @@
-const Books = require("../models").Books;
+import Books from "../models"
+const AllBooks = Books.Books;
 
-module.exports = {
+export default  {
 //admin adding books to database controller
 	addBook(req,res) {
-		return Books
+		return AllBooks
 		.create({
 			name : req.body.name,
 			category : req.body.category,
 			author : req.body.author,
-			content : req.body.content,
-			isclicense : req.body.isclicense
-		})
+			contents : req.body.contents,
+			isclicense : req.body.isclicense,
+			quantity : req.body.quantity
+		}) 
+		
 		.then(books => res.status(200).send(books))
 		.catch(error => res.status(400).send(error.message))
 	},
 //controller to get all available books 
 	getAvailableBooks(req,res) {
-		return Books
+		return AllBooks
 		.findAll()
 		.then(books => res.status(200).send(books))
 	},
 //routes for admin to modify book information
 	modifyBook(req,res) {
-	 	return Books
-		.findOne({
-			where :{
-				id : req.body.bookid
-			}
-		})
-		.then(books => res.status(200).send(books))
-		.catch(error => res.status(400).send(error.message))
+	 	let newData = {
+	 		name: req.body.name,
+	 		category: req.body.category
+	 	}
+	 	return AllBooks
+	 	.update(newData, {where: {id: req.params.bookid}})
+	 	.then(Books => res.status(200).send(Books))
+	 	.catch(error => res.status(400).send(error.message))
 	}
 }
